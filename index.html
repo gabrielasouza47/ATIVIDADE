@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Descubra a Palavra</title>
+  <style>
+    body{
+background-color: aquamarine;
+font-family: Arial, Helvetica, sans-serif;
+
+    }
+  </style>
+</head>
+<body>
+    
+
+  <h1>Jogo: Descubra a Palavra</h1>
+
+  <!-- Jogador 1 -->
+  <input type="password" id="palavra" placeholder="Digite a palavra">
+  <input type="text" id="dica" placeholder="Digite a dica">
+  <button onclick="iniciarJogo()">Enviar</button>
+
+  <hr>
+
+  <p>Dica: <span id="mostrarDica"></span></p>
+  <p>Palavra: <span id="mostrarPalavra"></span></p>
+
+
+  <button onclick="chutarLetra()">Chutar letra</button>
+  <br><br><br><br><br>
+  <a href="dado.html">
+  <BUTton >ir para o Jogo do dado</BUTton></a>
+ 
+
+  <script>
+
+    let palavraSecreta = "";
+    let palavraOculta = "";
+
+    function iniciarJogo() {
+
+      
+      palavraSecreta = document.getElementById("palavra").value;
+      let dica = document.getElementById("dica").value;
+
+      
+      palavraSecreta = palavraSecreta.toLowerCase();
+
+      
+      palavraOculta = "*".repeat(palavraSecreta.length);
+
+      
+      document.getElementById("mostrarDica").innerText = dica;
+
+      
+      document.getElementById("mostrarPalavra").innerText = palavraOculta;
+    }
+
+    function chutarLetra() {
+
+      
+      let letra = prompt("Digite uma letra:");
+
+      
+      letra = letra.toLowerCase();
+
+     
+      let novaPalavra = "";
+
+      for (let i = 0; i < palavraSecreta.length; i++) {
+
+        if (palavraSecreta[i] === letra) {
+          novaPalavra += letra;
+        } else {
+          novaPalavra += palavraOculta[i];
+        }
+
+      }
+
+      palavraOculta = novaPalavra;
+
+      
+      document.getElementById("mostrarPalavra").innerText = palavraOculta;
+
+      
+      if (palavraOculta === palavraSecreta) {
+        alert("Parabéns! Você acertou a palavra!");
+      }
+    }
+
+  </script>
+
+</body>
+</html>
